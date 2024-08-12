@@ -1,0 +1,29 @@
+#include <Wire.h>
+#include <Adafruit_INA219.h>
+
+Adafruit_INA219 ina219;
+
+void setup() {
+  Serial.begin(9600);
+  ina219.begin();
+}
+
+void loop() {
+  float voltage = ina219.getBusVoltage_V();
+  float current = ina219.getCurrent_mA();
+  float power = voltage * current / 1000; // power in watts
+  
+  Serial.print("Voltage: ");
+  Serial.print(voltage);
+  Serial.println(" V");
+  
+  Serial.print("Current: ");
+  Serial.print(current);
+  Serial.println(" mA");
+  
+  Serial.print("Power: ");
+  Serial.print(power);
+  Serial.println(" W");
+  
+  delay(1000); // Delay for 1 second
+}
